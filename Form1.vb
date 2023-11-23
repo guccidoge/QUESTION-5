@@ -1,33 +1,23 @@
 ﻿Public Class Form1
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Dim decOne As Decimal
 
-        'InputBox("insert a number with a decimal point")
-        'TextBox1.Text = decOne
+        Dim decInput As String = TextBox1.Text
 
-        'If decOne = " " Then
-        'MessageBox.Show("INSERT A DECIMAL")
-        'End If
+        If IsNumeric(decInput) = True And decInput >= 0 Then
+            If Int(decInput) = CDec(decInput) Then
+                MsgBox("Please enter a number with DECIMAL point!")
+                TextBox1.Text = " "
+            Else
+                Dim firstDec As String = TextBox1.Text.IndexOf(".")
+                Dim startPos = InStrRev(decInput, ".")
+                Dim subString = decInput.ToString.Substring(startPos)
+                Dim len = subString.Length
 
-        'Dim decOne As Decimal
-
-        'Decimal.TryParse(TextBox1.Text, decOne)
-
-        'If Double.TryParse(TextBox1.Text, decOne) Then
-        'TextBox2.Text = decOne.ToString()
-        'Else MessageBox.Show("Please enter a valid number")
-        'TextBox1.Text = " "
-        'End If
-
-        Dim output As Integer
-        If (Integer.TryParse(TextBox1.Text, output)) Then
-            MsgBox("Please enter a number with decimal point")
+                Label1.Text = firstDec
+                Label2.Text = len
+            End If
         Else
-            TextBox2.Text = TextBox1.Text.IndexOf(".")
+            MsgBox("Please enter a POSITIVE NUMBER!")
         End If
-
-
     End Sub
-
-
 End Class
